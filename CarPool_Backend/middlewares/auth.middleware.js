@@ -6,6 +6,7 @@ const auth = (req, res, next)=>{
     if (!cookie) {
         throw new customError(400, 'Bad request Token not available');
     }
+    
     const token = cookie?.split('; ')?.filter((c)=> c.includes('jwtToken'))?.[0]?.replace('jwtToken=','');
     if (!token) {
         throw new customError(400, 'Bad request Token not available')

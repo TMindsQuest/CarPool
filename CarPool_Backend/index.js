@@ -2,12 +2,13 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-require('dotenv').config(); 
-
 const userRouter = require('./routes/user.routes.js');
+const rideRouter = require('./routes/ride.routes.js');
 const { errorHandler } = require('./middlewares/errorhandler.middleware');
 const cookieParser = require('cookie-parser');
 
+
+require('dotenv').config(); 
 const app = express();
 const port = process.env.PORT || 3000;
 
@@ -30,6 +31,7 @@ app.get('/', (req, res) => {
     res.send('Hello World!');
 });
 app.use('/api/users', userRouter);
+app.use('/api/ride', rideRouter);
 
 app.use((req,res)=>{
     res.status(404).send('API not found.')
